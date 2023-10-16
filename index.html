@@ -69,7 +69,56 @@ In this project, rather than merging their capabilities, we endeavor to conduct 
 <br><br>
 <!-- Approach -->
 <h3>Approach</h3>
-Describe very clearly and systematically your approach to solve the problem. Tell us exactly what existing implementations you used to build your system. Tell us what obstacles you faced and how you addressed them. Justify any design choices or judgment calls you made in your approach.
+<ul>
+
+<li> <b>Data Understanding and Preprocessing</b>
+<br>
+We will begin by examining the "Semantic Segmentation for Self Driving Cars" dataset, which has been sourced from the Lyft Udacity Challenge. This dataset provides us with a unique advantage of having sets of RGB images along with their corresponding semantic segments, allowing us to have clear ground truth for training and validation.
+<br>
+The dataset comprises five sets, each containing 1000 images and their associated labels. Our initial preprocessing steps will involve:
+<ul class="sub">
+<li>Checking for any missing values or corrupted images.</li>
+<li>Normalizing the RGB values of the images for uniformity and to aid the training process.</li>
+<li>Splitting the dataset into training, validation, and testing subsets, ensuring a good representation of each class in all the subsets.</li>
+</ul>
+</li>
+<br>
+<li> <b>Training with LaneNet</b>
+<br>
+Given our primary focus on LaneNet for lane detection, we will configure the LaneNet architecture to suit our dataset. 
+<br>
+Training will involve:
+<ul class="sub">
+<li>Feeding the normalized RGB images to LaneNet.</li>
+<li>Using the corresponding semantic segments as ground truth to compute the loss and backpropagate the error.</li>
+<li>Periodically validating the model's performance on the validation subset to monitor for overfitting and guide hyperparameter tuning.</li>
+<li>Saving the best-performing model based on validation metrics for subsequent testing.</li>
+</ul>
+</li>
+<br>
+<li> <b>Testing in the CARLA Environment</b>
+<br>
+Post-training, the robustness and efficiency of our trained LaneNet model will be evaluated in the dynamic CARLA environment. By simulating real-world driving scenarios, CARLA provides a comprehensive testing ground where the model's predictions can be compared against the actual road and lane conditions.
+</li>
+<br>
+<li> <b> Comparison with SegNet </b>
+<br>
+To gauge the efficacy of our chosen model, we will contrast LaneNet's performance with SegNet, another reputable model in the domain of semantic segmentation. 
+<br>
+The comparison will involve:
+<ul class="sub">
+<li>Training SegNet on the same training subset derived from our dataset.</li>
+<li>Evaluating both models' performances based on metrics such as accuracy, F1-score, recall, and precision on the testing subset.</li>
+<li>Analyzing how each model performs in the CARLA testing environment, understanding their strengths, weaknesses, and potential areas of improvement.</li>
+</ul>
+</li>
+<br>
+<li><b>Conclusion and Future Directions </b>
+<br>
+After rigorous training, testing, and comparison, we will consolidate our findings, highlighting the advantages and potential pitfalls of using LaneNet for lane detection in simulated environments. Our results will offer insights into the feasibility of deploying such models in real-world autonomous driving systems and provide a foundation for potential enhancements in future iterations.
+</li>
+
+</ul> 
 
 <br><br>
 
